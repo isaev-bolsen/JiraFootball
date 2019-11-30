@@ -8,7 +8,7 @@ namespace JiraFootball
 		public static void Main(string[] args)
 		{
 			Jira jira = Jira.CreateRestClient("https://jira..com", "", "");
-			foreach (Issue issue in jira.Issues.GetIssuesFromJqlAsync("").Result)
+			foreach (Issue issue in jira.Issues.GetIssuesFromJqlAsync("assignee = currentUser() AND resolution = Unresolved order by updated DESC").Result)
 			{
 				Console.WriteLine(issue.Description);
 				if(string.IsNullOrWhiteSpace( issue.Description))
